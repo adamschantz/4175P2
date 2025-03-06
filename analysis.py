@@ -43,3 +43,18 @@ df.columns = [f"y{i+1}" for i in range(m)]
 df.index = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 print(df)
+
+def vigenere_decrypt(ciphertext, key):
+    key = key.upper()
+    plaintext = []
+    key_index = 0
+    
+    for char in ciphertext:
+        if char in alphabet:
+            shift = alphabet.index(key[key_index % len(key)])
+            decrypted_index = (alphabet.index(char) - shift) % 26
+            plaintext.append(alphabet[decrypted_index])
+            key_index += 1
+
+    
+    return "".join(plaintext)
